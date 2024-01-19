@@ -1,0 +1,15 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<div th:replace="~{fragments/header::body}"></div>
+
+<h1>modifier une category</h1>
+
+<form method="POST" th:action="@{/category/update}" th:object="${c}"><!-- c'est pour retourner l'objet -->
+ 
+   <input type="hidden" th:field="*{id}"/>
+    <div class="form-group">
+      <label for="nom">nom</label>
+      <input type="text"  required ="text" th:field ="*{nom}" placeholder="nom" class="form-control" >
+    </div>
+
+     <button type="submit" class="btn btn-primary">update</button>
+</form>

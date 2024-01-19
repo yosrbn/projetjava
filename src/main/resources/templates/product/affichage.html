@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<div th:replace="~{fragments/header::body}"></div>
+<h1 align="center">Liste des produits</h1>
+
+<table border="2" align="center" class="table">
+
+    <tr class="p-3 mb-2 bg-primary text-white">
+        <td>Identifiant</td>
+        <td>Nom</td>
+        <td>Description</td>
+        <td>Prix</td>
+        <td>Image</td>
+        <td>Catégorie</td>
+        <td>Fournisseur</td>
+        <td>suppression</td>
+        <td>modification</td>
+    </tr>
+
+    <tr th:each="p : ${produits}">
+        <td th:text="${p.id}"></td>
+        <td th:text="${p.nom}"></td>
+        <td th:text="${p.description}"></td>
+        <td th:text="${p.prix}"></td>
+        <td><img th:src="@{/produit/images/{imageName}(imageName=${p.image})}" width="70"
+                                                   height="70"/>
+        </td>
+
+        <td th:text="${p.category.nom}"></td>
+        <td th:text="${p.fournisseur.nom}"></td>
+        <td><a th:href="@{/produit/delete/{id}(id=${p.id})}" class="btn btn-danger">Supprimer</a></td>
+        <td><a th:href="@{/produit/update/{id}(id=${p.id})}" class="btn btn-warning">Modifier</a></td>
+    </tr>
+</table>
+
+<a th:href="@{/produit/add}" class="btn btn-success">Ajouter un nouveau produit</a>

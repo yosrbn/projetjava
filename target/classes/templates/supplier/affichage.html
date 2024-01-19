@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<div th:replace="~{fragments/header::body}"></div>
+
+<h1 align="center">Liste des fournisseurs</h1>
+
+<table border="2" align="center" class="table" >
+
+<tr class="p-3 mb-2 bg-primary text-white">
+<td>identifiant</td>
+<td>nom</td>
+<td>email</td>
+<td>tel</td>
+<td>suppression</td>
+<td>modificationion</td>
+</tr>
+
+<tr th:each="c : ${fournisseurs}">
+<td th:text="${c.id}"></td>
+<td th:text="${c.nom}"></td>
+<td th:text="${c.email}"></td>
+<td th:text="${c.tel}"></td>
+<td> <a th:href="@{/fournisseur/delete/{id}(id=${c.id})}" class="btn btn-danger">supprimer</a></td>
+<td> <a th:href="@{/fournisseur/update/{id}(id=${c.id})}" class="btn btn-warning">modifier</a></td>
+</tr>
+</table>
+<a th:href="@{add}" class="btn btn-success">Ajouter un nouveau fournisseur</a>
